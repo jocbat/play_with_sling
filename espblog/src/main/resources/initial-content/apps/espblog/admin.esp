@@ -21,8 +21,10 @@
  
 <html>
 <%
-pageTitle = "Blog admin"
-load("header.esp")
+pageTitle = "Blog admin";
+load("header.esp");
+var currentNodeProvided = ((typeof currentNode != "undefined") && currentNode.title != null);
+
 %>
 	<body>
 		<div class="title">
@@ -51,9 +53,11 @@ load("header.esp")
 			    </tr>
 			    
 			    <%
+			    if(currentNodeProvided){
+
 			    df = new java.text.SimpleDateFormat( "yyyy-MM-dd HH:mm" );
 			
-			    posts = currentNode.getNodes()
+			    posts = currentNode.getNodes();
 			    for (a in posts) {
 			    	post = posts[a]
 			        if(!post.created) {
@@ -65,17 +69,18 @@ load("header.esp")
 			    <tr>
 			      <td><%=post.title%></td>
 			      <td><%=df.format(post.created.getTime())%></td>
-			      <td><a href="/content/espblog/posts/<%=a%>.html">View</a>&nbsp;<a href="/content/espblog/posts/<%=a%>.edit.html">Edit</a></td>
+			      <td><a href="/content/espblog/test/<%=a%>.html">View</a>&nbsp;<a href="/content/espblog/test/<%=a%>.edit.html">Edit</a></td>
 			      <td>
-			        <form method="POST" action="/content/espblog/posts/<%=a%>">
-				          <input name=":redirect" type="hidden" value="/content/espblog/posts.admin.html"/> 
+			        <form method="POST" action="/content/espblog/test/<%=a%>">
+				          <input name=":redirect" type="hidden" value="/content/espblog/test.admin.html"/>
 				          <input name=":operation" type="hidden" value="delete"/> 
 				          <input type="submit" value="Delete">
 			      	</form>			          
 			      </td>
 			    </tr>
 			    
-			  <%}%>
+			  <%}
+			  }%>
 			  </table>
 		</div>			  
 	</body>

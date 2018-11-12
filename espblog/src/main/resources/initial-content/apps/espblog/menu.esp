@@ -23,10 +23,10 @@ load("constants.esp");
 
 <div id="header">				
 	<ul class="tabs">
-		<li><a href="/content/espblog/posts.list.html">Home</a></li>
-		<li><a href="/content/espblog/posts.admin.html">Admin</a></li>
-		<li><a href="/content/espblog/posts/*.edit.html">New Post</a></li>
-		<li><a href="/content/espblog/posts.xml">RSS feed</a></li>
-		<li><form method="GET" action="/content/espblog/posts.list.html"><input type="text" name="qt" size="10" value="Search"/></form></li>	
+		<li><a href="/content/espblog/test.list.html">Home</a></li>
+		<li><a href="/content/espblog/test.admin.html">Admin</a></li>
+		<li><a href="/content/espblog/test.edit.html">New Post</a></li>
+		<li><a href="/content/espblog/test.xml">RSS feed</a></li>
+		<li><form method="GET" action="/content/espblog/test.list.html"><input type="text" name="qt" size="10" value="Search"/></form></li>
 	</ul>
 </div>

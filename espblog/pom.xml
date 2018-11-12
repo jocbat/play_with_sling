@@ -49,6 +49,40 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <!--
+          Use this profile to install the OSGi bundle
+          automatically, during development
+      -->
+      <id>autoInstallBundle</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>maven-sling-plugin</artifactId>
+            <configuration>
+              <slingUrl>http://localhost:8080/system/console/install</slingUrl>
+              <user>admin</user>
+              <password>admin</password>
+            </configuration>
+            <executions>
+              <execution>
+                <id>install-bundle</id>
+                <goals>
+                  <goal>install</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
   
   <reporting>
     <plugins>
@@ -94,10 +128,10 @@
       <artifactId>slf4j-api</artifactId>
       <scope>provided</scope>
     </dependency>
-        <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.scr.annotations</artifactId>
-        </dependency>
+    <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.scr.annotations</artifactId>
+    </dependency>
   </dependencies>
   
 </project>

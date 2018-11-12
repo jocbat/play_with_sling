@@ -22,9 +22,9 @@
 <%    
    var queryManager = currentNode.getSession().getWorkspace().getQueryManager();  
    if(request.getParameter('qt')) {
-   	var query = queryManager.createQuery("/jcr:root/content/espblog/posts/element(*, nt:unstructured)[jcr:contains(., '"+request.getParameter("qt")+"')] order by @created descending", "xpath");
+   	var query = queryManager.createQuery("/jcr:root/content/espblog/test/element(*, nt:unstructured)[jcr:contains(., '"+request.getParameter("qt")+"')] order by @created descending", "xpath");
    } else { 
-   	var query = queryManager.createQuery("/jcr:root/content/espblog/posts/element(*, nt:unstructured) order by @created descending", "xpath");
+   	var query = queryManager.createQuery("/jcr:root/content/espblog/test/element(*, nt:unstructured) order by @created descending", "xpath");
    }
    var result = query.execute().getNodes();
 %>
@@ -63,7 +63,7 @@
 			        %> 
 	
 					<h3><a href="<%= post.getPath() %>.html"><%=post.title%></a></h3>
-					<strong>Posted at <%=df.format(post.created.getTime())%></strong><br>					
+					<strong>Posted at <%=df.format(post.created.getTime())%></strong><br>
 					<p><%=post.posttext%><br/><strong class="highlight"><a href="<%=post%>.html"><%=post.hasNode("comments") ? "See comments" : "Be the first to comment"%> </a></strong> </p>
 				<%}%>	
 			</div>
