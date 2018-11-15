@@ -34,6 +34,50 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.11</version>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <excludes combine.children="append">
+                <exclude>src/main/appended-resources/META-INF/*</exclude>
+                <exclude>velocity.log</exclude>
+                <exclude>target/*</exclude>
+                <exclude>README.md</exclude>
+                <exclude>maven-eclipse.xml</exclude>
+                <exclude>.*</exclude>
+                <exclude>.*/**</exclude>
+                <exclude>**/*.json</exclude>
+                <exclude>DEPENDENCIES</exclude>
+                <exclude>**/*.rej</exclude>
+                <exclude>hs_err_*.log</exclude>
+                <exclude>src/test/java/*</exclude>
+                <exclude>src/test/resources/*</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.doxia</groupId>
+            <artifactId>doxia-core</artifactId>
+            <version>1.2</version>
+            <scope>compile</scope>
+            <exclusions>
+              <exclusion>
+                <artifactId>xercesImpl</artifactId>
+                <groupId>xerces</groupId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-scr-plugin</artifactId>
       </plugin>
@@ -97,6 +141,13 @@
   </reporting>
   
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.apache.sling/org.apache.sling.testing.sling-mock -->
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.sling-mock</artifactId>
+      <version>1.9.12</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.apache.sling</groupId>
       <artifactId>org.apache.sling.api</artifactId>
